@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="studentdashboardstyles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js for Graphs -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Student Portal</h2>
+        <ul>
+            <li><a href="studentdashboard.html"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
+            <li><a href="attendance.html"><i class="fas fa-calendar-check"></i> <span>Attendance</span></a></li>
+            <li><a href="#"><i class="fas fa-chart-line"></i> <span>Exam Performance</span></a></li>
+            <li><a href="#"><i class="fas fa-calendar-alt"></i> <span>Timetable & Events</span></a></li>
+            <li><a href="#"><i class="fas fa-comments"></i> <span>Chat Faculty & Admin</span></a></li>
+            <li><a href="#"><i class="fas fa-briefcase"></i> <span>Placements & Career</span></a></li>
+            <li><a href="#"><i class="fas fa-cog"></i> <span>Settings</span></a></li>
+            <li><a href="landing.html"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>Welcome, Student!</h1>
+
+        <div class="graphs">
+            <!-- Attendance Graph -->
+            <div class="graph-card">
+                <h3>Attendance Percentage</h3>
+                <canvas id="attendanceChart"></canvas>
+            </div>
+
+            <!-- Performance Graph -->
+            <div class="graph-card">
+                <h3>Exam Performance</h3>
+                <canvas id="performanceChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Calendar Section -->
+        <div class="calendar-container">
+            <h3>Upcoming Events</h3>
+            <div id="calendar"></div>
+        </div>
+    </div>
+
+    <!-- Event Modal -->
+    <div id="eventModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="eventTitle"></h2>
+            <p id="eventDescription"></p>
+            <p><strong>Guest Speaker:</strong> <span id="eventGuest"></span></p>
+            <p><strong>Date:</strong> <span id="eventDate"></span></p>
+        </div>
+    </div>
+
+    <script src="studentdashboardscript.js"></script>
+</body>
+</html>

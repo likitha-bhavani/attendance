@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Dashboard</title>
+    <link rel="stylesheet" href="attendance.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script> <!-- PDF Export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script> <!-- Excel Export -->
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <h2>Student Portal</h2>
+        <ul>
+            <li><a href="studentdashboard.html">🏠 Dashboard</a></li>
+            <li><a href="attendance.html" >📅 Attendance</a></li>
+            <li><a href="performance.html">📊 Exam Performance</a></li>
+            <li><a href="events.html">📆 Timetable & Events</a></li>
+            <li><a href="chat.html">💬 Chat Faculty</a></li>
+            <li><a href="placements.html">🎓 Placements</a></li>
+            <li><a href="settings.html">⚙️ Settings</a></li>
+            <li><a href="landing.html">🚪 Logout</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>📅 Attendance Dashboard</h1>
+
+
+        <div class="toggle-buttons">
+            <button onclick="showSection('week')">📆 Week-wise Attendance</button>
+            <button onclick="showSection('month')">📊 Month-wise Attendance</button>
+            <button onclick="showSection('semester')">📉 Semester-wise Attendance</button>
+        </div>
+
+        <!-- Day-wise Attendance -->
+        <div class="attendance-section">
+            <h2>📆 Day-wise Attendance</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Subject</th>
+                        <th>Status</th>
+                        <th>Faculty Contact</th>
+                        <th>Chat</th>
+                    </tr>
+                </thead>
+                <tbody id="dayWiseTable"></tbody>
+            </table>
+        </div>
+
+        <!-- Month-wise Attendance -->
+        <div class="attendance-section">
+            <h2>📊 Month-wise Attendance</h2>
+            <canvas id="monthAttendanceChart"></canvas>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Classes Attended</th>
+                        <th>Total Classes</th>
+                        <th>Attendance %</th>
+                    </tr>
+                </thead>
+                <tbody id="monthWiseTable"></tbody>
+            </table>
+        </div>
+
+        <!-- Semester-wise Attendance -->
+        <div class="attendance-section">
+            <h2>📉 Semester-wise Attendance</h2>
+            <canvas id="semesterAttendanceChart"></canvas>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Attendance %</th>
+                    </tr>
+                </thead>
+                <tbody id="semesterWiseTable"></tbody>
+            </table>
+        </div>
+ <div id="week" class="attendance-section">
+            <h2>📅 Week-wise Attendance</h2>
+            <canvas id="weekAttendanceChart"></canvas>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Week</th>
+                        <th>Subject</th>
+                        <th>Classes Attended</th>
+                        <th>Total Classes</th>
+                        <th>Attendance %</th>
+                    </tr>
+                </thead>
+                <tbody id="weekWiseTable"></tbody>
+            </table>
+        </div>
+
+        <!-- Month-wise Attendance -->
+        <div id="month" class="attendance-section" style="display: none;">
+            <h2>📊 Month-wise Attendance</h2>
+            <canvas id="monthAttendanceChart"></canvas>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Classes Attended</th>
+                        <th>Total Classes</th>
+                        <th>Attendance %</th>
+                    </tr>
+                </thead>
+                <tbody id="monthWiseTable"></tbody>
+            </table>
+        </div>
+
+        <!-- Semester-wise Attendance -->
+        <div id="semester" class="attendance-section" style="display: none;">
+            <h2>📉 Semester-wise Attendance</h2>
+            <canvas id="semesterAttendanceChart"></canvas>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Attendance %</th>
+                    </tr>
+                </thead>
+                <tbody id="semesterWiseTable"></tbody>
+            </table>
+        </div>
+        <!-- Download Buttons -->
+        <div class="download-buttons">
+            <button onclick="downloadPDF()">📄 Download PDF</button>
+            <button onclick="downloadExcel()">📊 Download Excel</button>
+        </div>
+    </div>
+
+    <script src="attendance.js"></script>
+</body>
+</html>
